@@ -1,0 +1,65 @@
+entity BusStation {
+	Title String 
+    Square String
+    Capacity Integer
+}
+
+entity Carrier {
+	Name String
+    License Integer
+}
+
+entity User {
+	Name String
+    Surname String
+    NumberOfPhone String
+    ID Integer
+}
+
+entity Bus {
+    ID Integer
+	Name String
+}
+
+entity Tickets {
+	ID Integer
+    ShelfLife Integer
+  	NumberOfPassengers Integer
+}
+
+entity Cashbox {
+	Number Integer
+}
+
+enum Role {
+  USER, ADMIN, CASHIER
+}
+
+relationship OneToOne {
+	User to Role,
+    BusStation to Cashbox
+}
+
+relationship OneToMany {
+	BusStation{Title} to Carrier,
+    BusStation{Name} to User,
+    Cashbox to Tickets
+}
+
+relationship ManyToMany {
+	Carrier{Name} to Bus{ID},
+    User to Cashbox
+}
+relationship ManyToOne {
+	Tickets to Bus
+}
+
+
+
+
+
+
+
+
+
+
